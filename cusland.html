@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Landing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button {
+            background-color: #6c757d;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="https://brandslogos.com/wp-content/uploads/images/large/penguin-group-logo-black-and-white.png" alt="Logo" class="logo">
+    </div>
+    <div class="container">
+        <h1>Welcome Customer!, Happy Banking!</h1>
+        <div class="button-group">
+            <button onclick="window.location.href = 'transac.html';">Perform Transaction</button>
+            <button onclick="window.location.href = 'checkbal.html';">Check Balance</button>
+            <button class="back-button" onclick="window.location.href = 'cuslog.html';">Logout</button>
+        </div>
+    </div>
+</body>
+</html>

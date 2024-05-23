@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Balance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            margin: 5px 0 20px;
+            padding: 10px;
+            width: calc(100% - 22px);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button {
+            background-color: #6c757d;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="https://brandslogos.com/wp-content/uploads/images/large/penguin-group-logo-black-and-white.png" alt="Logo" class="logo">
+    </div>
+    <div class="container">
+        <h1>Check Balance</h1>
+        <form id="checkBalanceForm">
+            <label for="customerId">Customer ID:</label>
+            <input type="text" id="customerId" name="customerId" required>
+
+            <label for="accountNumber">Account Number:</label>
+            <input type="text" id="accountNumber" name="accountNumber" required>
+
+            <label for="ifscCode">IFSC Code:</label>
+            <input type="text" id="ifscCode" name="ifscCode" required>
+
+            <button type="submit">Check Balance</button>
+        </form>
+        <button class="back-button" onclick="window.location.href = 'landing.html';">Back to Dashboard</button>
+    </div>
+
+    <script>
+        document.getElementById('checkBalanceForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const customerId = document.getElementById('customerId').value;
+            const accountNumber = document.getElementById('accountNumber').value;
+            const ifscCode = document.getElementById('ifscCode').value;
+
+            const balance = checkBalance(customerId, accountNumber, ifscCode);
+
+            if (balance !== null) {
+                alert(`Balance for Account Number ${accountNumber} is ₹${balance}`);
+            } else {
+                alert('Customer not found or incorrect details.');
+            }
+        });
+
+        function checkBalance(customerId, accountNumber, ifscCode) {
+            const customerKey = 'customer_' + customerId;
+            const customerData = sessionStorage.getItem(customerKey);
+
+            if (!customerData) {
+                return null;
+            }
+
+            const customer = JSON.parse(customerData);
+
+            if (customer.accountNumber == accountNumber && customer.ifscCode == ifscCode) {
+                return customer.accountBalance;
+            } else {
+                return null;
+            }
+        }
+    </script>
+</body>
+</html>
